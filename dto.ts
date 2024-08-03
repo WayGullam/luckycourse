@@ -19,12 +19,13 @@ export type Progress = {
 }
 
 export type Course =  {
-	id: number;
+	id?: number;
 	title: string;
 	description: string;
-	modules: Module[];
-	progress: Progress;
-	status: Status;
+	imgPath: string;
+	modules?: Module[];
+	progress?: Progress;
+	status?: Status;
 }
 
 export enum Status {

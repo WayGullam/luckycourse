@@ -35,25 +35,14 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export const Auth = () => {
+export const Registration = () => {
   return (
     <FullHeightBox>
       <StyledFormContainer>
         <Typography component='h1' variant='h5'>
-          Регистрация
+          Вход
         </Typography>
         <Box component='form' noValidate sx={{ mt: 1 }}>
-          <StyledTextField
-            margin='normal'
-            required
-            fullWidth
-            id='name'
-            label='Имя'
-            name='name'
-            autoComplete='name'
-            autoFocus
-            sx={{ mb: 2 }}
-          />
           <StyledTextField
             margin='normal'
             required
