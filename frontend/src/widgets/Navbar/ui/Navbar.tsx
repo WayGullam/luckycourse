@@ -14,10 +14,10 @@ export const Navbar = ({ className }: NavbarProps) => (
         <img src={Logo} className={cls.logo} />
       </div>
       <div className={cls.links}>
-        <AppLink to='/' className={cls.mainLink}>
-          Перейти на главаную
+        <AppLink to='/auth' className={cls.mainLink}>
+          Вход
         </AppLink>
-        <AppLink to='/course'>Перейти на курс</AppLink>
+        <AppLink to='/course'>Регистрация</AppLink>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { Auth } from '@/pages/Auth/Auth';
-import { Log } from '@/pages/Auth/Log';
+import { Registration } from '@/pages/Auth/Registration';
 import { CoursePage } from '@/pages/CoursePage';
 import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
@@ -8,14 +8,14 @@ export enum AppRoutes {
   MAIN = 'main',
   COURSE = 'course',
   AUTH = 'auth',
-  LOGIN = 'login',
+  REGISTRATION = 'registration',
 }
 
 export const RouterPath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
   [AppRoutes.COURSE]: '/course',
   [AppRoutes.AUTH]: '/auth',
-  [AppRoutes.LOGIN]: '/login',
+  [AppRoutes.REGISTRATION]: '/registration',
 };
 
 export const routerConfig: Record<AppRoutes, RouteProps> = {
@@ -31,8 +31,8 @@ export const routerConfig: Record<AppRoutes, RouteProps> = {
     path: RouterPath.auth,
     element: <Auth />,
   },
-  [AppRoutes.LOGIN]: {
-    path: RouterPath.login,
-    element: <Log />,
+  [AppRoutes.REGISTRATION]: {
+    path: RouterPath.registration,
+    element: <Registration />,
   },
 };
