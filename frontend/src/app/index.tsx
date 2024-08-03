@@ -7,10 +7,12 @@ import { Navbar } from '@/widgets/Navbar';
 
 import './styles/index.scss';
 import { MainLayout } from '@/Layouts/MainLayout/ui/MainLayout';
+import { CssBaseline } from '@mui/material';
 
 export const App = () => {
   return (
     <Providers>
+      <CssBaseline />
       <ToastContainer />
       <Suspense fallback=''>
         <Navbar />

@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { Container, TextField, Button, Typography, Box, Avatar, CssBaseline } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
 
 const StyledContainer = styled(Container)`
   margin-top: 8px;
@@ -10,24 +8,18 @@ const StyledContainer = styled(Container)`
   align-items: center;
 `;
 
-const StyledAvatar = styled(Avatar)`
-  margin: 8px;
-  background-color: #3f51b5; /* Синий цвет */
-`;
-
 const StyledButton = styled(Button)`
   margin-top: 24px;
   margin-bottom: 16px;
-  background-color: #3f51b5; /* Синий цвет */
+  background-color: #3f51b5;
   &:hover {
-    background-color: #303f9f; /* Темно-синий цвет */
+    background-color: #303f9f;
   }
 `;
 
 export const Auth = () => {
   return (
     <Container component='main' maxWidth='xs'>
-      <CssBaseline />
       <StyledContainer>
         <Typography component='h1' variant='h5'>
           Авторизация
