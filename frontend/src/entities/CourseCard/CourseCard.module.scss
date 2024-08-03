@@ -1,8 +1,8 @@
 .cardWrapper {
-  width: 480px;
+  width: 345px;
   background-color: white;
   border-radius: 12px;
-  font-family: monospace;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow: hidden;
   border: 3px solid white;
   transition: all .3s ease-in-out;
@@ -27,6 +27,6 @@
 
   p {
     padding: 0 0 10px 10px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }

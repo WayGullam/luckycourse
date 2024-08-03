@@ -9,7 +9,7 @@ const CourseCard: FC<Course> = (props) => {
 
   return (
     <div className={styles.cardWrapper}>
-      <AppLink to={'/course'}>
+      <AppLink to={`/course`}>
         <div>
           <img src={imgPath} alt={title} />
         </div>

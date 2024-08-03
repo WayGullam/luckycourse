@@ -8,7 +8,13 @@ export const courseApi = api.injectEndpoints({
         url: '/courses/',
       }),
     }),
+    getCourseById: build.query<Course, string>({
+      query: (id) => ({
+        url: `/courses/${id}`,
+      }),
+    }),
   }),
+  overrideExisting: false,
 });
 
-export const { useGetCoursesQuery } = courseApi;
+export const { useGetCoursesQuery, useGetCourseByIdQuery } = courseApi;
