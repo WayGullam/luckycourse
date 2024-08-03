@@ -10,14 +10,14 @@ interface NavbarProps {
 export const Navbar = ({ className }: NavbarProps) => (
   <div className={clsx(cls.navbar, {}, [className])}>
     <div className={cls.wrapper}>
-      <div>
+      <AppLink to='/'>
         <img src={Logo} className={cls.logo} />
-      </div>
+      </AppLink>
       <div className={cls.links}>
-        <AppLink to='/registration' className={cls.mainLink}>
+        <AppLink to='/auth' className={cls.mainLink}>
           Вход
         </AppLink>
-        <AppLink to='/auth'>Регистрация</AppLink>
+        <AppLink to='/registration'>Регистрация</AppLink>
       </div>
     </div>
   </div>
