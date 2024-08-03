@@ -10,9 +10,9 @@ interface NavbarProps {
 export const Navbar = ({ className }: NavbarProps) => (
   <div className={clsx(cls.navbar, {}, [className])}>
     <div className={cls.wrapper}>
-      <div>
+      <AppLink to='/'>
         <img src={Logo} className={cls.logo} />
-      </div>
+      </AppLink>
       <div className={cls.links}>
         <AppLink to='/auth' className={cls.mainLink}>
           Вход
