@@ -11,10 +11,10 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import { IconSearch, IconHelp, IconSettings, IconLogout, IconUserScan } from '@tabler/icons-react';
 
-import ColorSchemeToggle from '@/components/ColorSchemeToggle';
 import { sidebarItems } from './sidebarItems';
 import { SidebarItem } from './SidebarItem';
 import { closeSidebar } from '@/shared/lib';
+import ColorSchemeToggle from '@/features/theme/ui/ColorSchemeToggle';
 
 export default function Sidebar() {
   return (

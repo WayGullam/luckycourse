@@ -1,4 +1,4 @@
-import { RouteObject, useRoutes } from 'react-router-dom';
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import { MainLayout } from '@/layouts/MainLayout/MainLayout';
 import CoursesPage from '@/pages/Courses';
 import LoginPage from '@/pages/Login';
@@ -16,12 +16,20 @@ const privateRoutes: RouteObject[] = [
       },
     ],
   },
+  {
+    path: '*',
+    element: <Navigate to='/' />,
+  },
 ];
 
 const publicRoutes: RouteObject[] = [
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '*',
+    element: <Navigate to='/login' />,
   },
 ];
 

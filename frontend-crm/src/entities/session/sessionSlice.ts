@@ -25,7 +25,6 @@ export const sessionSlice = createSlice({
     logout: () => {
       localStorage.removeItem(SESSION_KEY);
       return {
-        client: null,
         isAuthenticated: false,
         token: null,
       };
