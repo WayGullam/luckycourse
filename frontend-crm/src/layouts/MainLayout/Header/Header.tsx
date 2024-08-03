@@ -1,9 +1,8 @@
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Sheet from '@mui/joy/Sheet';
 import IconButton from '@mui/joy/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-
-import { toggleSidebar } from '@/utils';
+import { IconMenu } from '@tabler/icons-react';
+import { toggleSidebar } from '@/shared/lib';
 
 export function Header() {
   return (
@@ -35,7 +34,7 @@ export function Header() {
         })}
       />
       <IconButton onClick={() => toggleSidebar()} variant='outlined' color='neutral' size='sm'>
-        <MenuIcon />
+        <IconMenu />
       </IconButton>
     </Sheet>
   );
