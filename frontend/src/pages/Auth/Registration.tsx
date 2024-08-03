@@ -1,49 +1,26 @@
-import styled from 'styled-components';
-import { TextField, Button, Typography, Box, Paper } from '@mui/material';
-
-const FullHeightBox = styled(Box)`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledFormContainer = styled(Paper)`
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  border-radius: 12px;
-`;
-
-const StyledTextField = styled(TextField)`
-  & .MuiOutlinedInput-root {
-    border-radius: 12px;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  margin-top: 24px;
-  margin-bottom: 16px;
-  background-color: #3f51b5;
-  border-radius: 12px;
-  &:hover {
-    background-color: #303f9f;
-  }
-`;
+import { Typography, Box } from '@mui/material';
+import * as Styled from './Auth.styled';
 
 export const Registration = () => {
   return (
-    <FullHeightBox>
-      <StyledFormContainer>
+    <Styled.FullHeightBox>
+      <Styled.StyledFormContainer>
         <Typography component='h1' variant='h5'>
-          Вход
+          Регистрация
         </Typography>
         <Box component='form' noValidate sx={{ mt: 1 }}>
-          <StyledTextField
+          <Styled.StyledTextField
+            margin='normal'
+            required
+            fullWidth
+            id='name'
+            label='Имя'
+            name='name'
+            autoComplete='name'
+            autoFocus
+            sx={{ mb: 2 }}
+          />
+          <Styled.StyledTextField
             margin='normal'
             required
             fullWidth
@@ -53,7 +30,7 @@ export const Registration = () => {
             autoComplete='логин'
             sx={{ mb: 2 }}
           />
-          <StyledTextField
+          <Styled.StyledTextField
             margin='normal'
             required
             fullWidth
@@ -64,11 +41,11 @@ export const Registration = () => {
             autoComplete='current-password'
             sx={{ mb: 2 }}
           />
-          <StyledButton type='submit' fullWidth variant='contained'>
-            Войти
-          </StyledButton>
+          <Styled.StyledButton type='submit' fullWidth variant='contained'>
+            Зарегистрироваться
+          </Styled.StyledButton>
         </Box>
-      </StyledFormContainer>
-    </FullHeightBox>
+      </Styled.StyledFormContainer>
+    </Styled.FullHeightBox>
   );
 };
