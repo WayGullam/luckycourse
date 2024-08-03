@@ -1,0 +1,14 @@
+.modulesList {
+  font-weight: 700;
+
+  .moduleItem {
+    cursor: pointer;
+  }
+
+  .moduleLessons {
+    .lessonItem {
+      font-weight: 400;
+      padding: 4px;
+    }
+  }
+}
