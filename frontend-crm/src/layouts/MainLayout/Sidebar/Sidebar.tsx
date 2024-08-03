@@ -9,16 +9,12 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
+import { IconSearch, IconHelp, IconSettings, IconLogout, IconUserScan } from '@tabler/icons-react';
 
 import ColorSchemeToggle from '@/components/ColorSchemeToggle';
-import { closeSidebar } from '@/utils';
-import { sidebarItems } from '@/routes/sidebarItems';
+import { sidebarItems } from './sidebarItems';
 import { SidebarItem } from './SidebarItem';
+import { closeSidebar } from '@/shared/lib';
 
 export default function Sidebar() {
   return (
@@ -75,12 +71,12 @@ export default function Sidebar() {
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <IconButton variant='soft' color='primary' size='sm'>
-          <BrightnessAutoRoundedIcon />
+          <IconUserScan />
         </IconButton>
-        <Typography level='title-lg'>WG</Typography>
+        <Typography level='title-lg'>LuckyCourse</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
-      <Input size='sm' startDecorator={<SearchRoundedIcon />} placeholder='Search' />
+      <Input size='sm' startDecorator={<IconSearch />} placeholder='Search' />
       <Box
         sx={{
           minHeight: 0,
@@ -118,13 +114,13 @@ export default function Sidebar() {
         >
           <ListItem>
             <ListItemButton>
-              <SupportRoundedIcon />
+              <IconHelp />
               Поддержка
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <SettingsRoundedIcon />
+              <IconSettings />
               Настройки
             </ListItemButton>
           </ListItem>
@@ -142,7 +138,7 @@ export default function Sidebar() {
           <Typography level='body-xs'>wg@support.com</Typography>
         </Box>
         <IconButton size='sm' variant='plain' color='neutral'>
-          <LogoutRoundedIcon />
+          <IconLogout />
         </IconButton>
       </Box>
     </Sheet>

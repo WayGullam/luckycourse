@@ -35,7 +35,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export const Log = () => {
+export const Registration = () => {
   return (
     <FullHeightBox>
       <StyledFormContainer>
