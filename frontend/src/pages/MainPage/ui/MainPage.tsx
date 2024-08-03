@@ -1,5 +1,11 @@
+import CourseList from '@/widgets/CourseList/ui/CourseList.tsx';
+
 const MainPage = () => {
-  return <div>Главая страница</div>;
+  return (
+    <div>
+      <CourseList />
+    </div>
+  );
 };
 
 export default MainPage;

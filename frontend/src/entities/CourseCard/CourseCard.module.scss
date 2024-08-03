@@ -1,0 +1,32 @@
+.cardWrapper {
+  width: 480px;
+  background-color: white;
+  border-radius: 12px;
+  font-family: monospace;
+  overflow: hidden;
+  border: 3px solid white;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(.99);
+  }
+
+  div {
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  h1 {
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    padding: 0 0 10px 10px;
+    font-size: 14px;
+  }
+}
