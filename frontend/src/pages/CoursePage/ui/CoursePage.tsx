@@ -6,12 +6,14 @@ import { useState } from 'react';
 
 const CoursePage = () => {
   const { courseId } = useParams();
-  console.log(courseId);
-  const { data, error, isLoading } = useGetCourseByIdQuery(courseId);
-  const [openModuleId, setOpenModuleId] = useState(null);
+  const serializedCourseId = parseInt(String(courseId));
+  const { data, isLoading } = useGetCourseByIdQuery(serializedCourseId, {
+    skip: Number.isNaN(serializedCourseId),
+  });
+  const [openModuleId, setOpenModuleId] = useState<number | null>(null);
 
-  const handleOpenModule = (id) => {
-    setOpenModuleId((prevId) => (prevId === id ? null : id)); // Открыть модуль или закрыть, если тот же модуль был открыт
+  const handleOpenModule = (id: number) => {
+    setOpenModuleId((prevId) => (prevId === id ? null : id));
   };
 
   if (isLoading) return <div>{'Загрузка...'}</div>;
@@ -32,7 +34,7 @@ const CoursePage = () => {
               <ul className={styles.moduleLessons}>
                 {module.lessons?.map((lesson) => (
                   <li key={lesson.id} className={styles.lessonItem}>
-                    {lesson.title}
+                    {lesson.content}
                   </li>
                 ))}
               </ul>
