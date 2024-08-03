@@ -1,10 +1,13 @@
-
 import { useParams } from 'react-router-dom';
 import { useGetCourseByIdQuery } from '@/api/courseApi.ts';
 
-const CourseDetail = ({courseId}: {courseId: string}) => {
+const CourseDetail = () => {
   const { courseId } = useParams();
-  const { data, error, isLoading } = useGetCourseByIdQuery(courseId);
+
+  const serializedCourseId = parseInt(String(courseId));
+  const { data, error, isLoading } = useGetCourseByIdQuery(serializedCourseId, {
+    skip: !Number.isNaN(serializedCourseId),
+  });
 
   if (isLoading) return <div>{'Загрузка...'}</div>;
 

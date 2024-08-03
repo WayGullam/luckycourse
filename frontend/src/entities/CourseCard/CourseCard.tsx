@@ -13,7 +13,7 @@ const CourseCard = ({ course }: IProps) => {
 
   return (
     <div className={styles.cardWrapper}>
-      <AppLink to={`/course`}>
+      <AppLink to={`/courses/${course.id}`}>
         <div>
           <img src={imgPath || ImgCourse} alt={title} />
         </div>

@@ -6,14 +6,14 @@ import { RouteProps } from 'react-router-dom';
 
 export enum AppRoutes {
   MAIN = 'main',
-  COURSE = 'course',
+  COURSE = 'courses',
   AUTH = 'auth',
   REGISTRATION = 'registration',
 }
 
 export const RouterPath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
-  [AppRoutes.COURSE]: '/course',
+  [AppRoutes.COURSE]: '/courses/:courseId',
   [AppRoutes.AUTH]: '/auth',
   [AppRoutes.REGISTRATION]: '/registration',
 };
@@ -24,9 +24,10 @@ export const routerConfig: Record<AppRoutes, RouteProps> = {
     element: <MainPage />,
   },
   [AppRoutes.COURSE]: {
-    path: RouterPath.course,
+    path: RouterPath.courses,
     element: <CoursePage />,
   },
+
   [AppRoutes.AUTH]: {
     path: RouterPath.auth,
     element: <Auth />,
