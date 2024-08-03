@@ -1,17 +1,21 @@
-import { FC } from 'react';
 import { Course } from '@root/dto.ts';
+import ImgCourse from '@/shared/assets/img-course.jpg';
 
 import styles from './CourseCard.module.scss';
 import { AppLink } from '@/shared/ui/AppLink/AppLink.tsx';
 
-const CourseCard: FC<Course> = (props) => {
-  const { id, title, description, imgPath, modules, progress, status } = props;
+interface IProps {
+  course: Course;
+}
+
+const CourseCard = ({ course }: IProps) => {
+  const { title, description, imgPath } = course;
 
   return (
     <div className={styles.cardWrapper}>
       <AppLink to={`/course`}>
         <div>
-          <img src={imgPath} alt={title} />
+          <img src={imgPath || ImgCourse} alt={title} />
         </div>
         <h1>{title}</h1>
         <p>{description}</p>
