@@ -1,7 +1,7 @@
 import CourseCard from '@/entities/CourseCard/CourseCard.tsx';
 import ImgCourse from '@/shared/assets/img-course.jpg';
 
-import styles from './CourseList.module.scss'
+import styles from './CourseList.module.scss';
 
 const CourseList = () => {
   return (

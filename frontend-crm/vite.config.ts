@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -9,7 +11,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react(), tsConfigPaths()],
   resolve: {
-    //@ts-expect-error
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: '@root', replacement: path.join(__dirname, '../../') },
+    ],
   },
 });

@@ -19,7 +19,7 @@ export type Progress = {
 }
 
 export type Course =  {
-	id?: number;
+	id: number;
 	title: string;
 	description: string;
 	imgPath: string;
