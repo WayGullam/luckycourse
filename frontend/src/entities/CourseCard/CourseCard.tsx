@@ -9,13 +9,13 @@ interface IProps {
 }
 
 const CourseCard = ({ course }: IProps) => {
-  const { title, description, imgPath } = course;
+  const { title, description, img_url } = course;
 
   return (
     <div className={styles.cardWrapper}>
       <AppLink to={`/courses/${course.id}`}>
         <div>
-          <img src={imgPath || ImgCourse} alt={title} />
+          <img src={img_url || ImgCourse} alt={title} />
         </div>
         <h1>{title}</h1>
         <p>{description}</p>
