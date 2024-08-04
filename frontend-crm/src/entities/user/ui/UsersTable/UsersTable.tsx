@@ -1,43 +1,43 @@
-import { useGetCoursesQuery } from '@/api/courseApi';
-import { lineClampSx } from '@/shared/styles';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {} from '@/api/courseApi';
+import { useGetUsersQuery } from '@/api/userApi';
 import { Box, BoxProps, Dropdown, IconButton, Menu, MenuButton, MenuItem, Table } from '@mui/joy';
 import { Course } from '@root/dto';
 import { IconDotsVertical } from '@tabler/icons-react';
 
 export type UsersTableProps = BoxProps & {
   onDelete?: (course: Course) => void;
-  onCourseClick?: (course: Course) => void;
+  onUserClick?: (course: Course) => void;
 };
 
-export const UsersTable = ({ sx, onDelete, onCourseClick, ...props }: UsersTableProps) => {
-  const coursesQuery = useGetCoursesQuery();
-  const courses = coursesQuery.data;
+export const UsersTable = ({ sx, onDelete, onUserClick, ...props }: UsersTableProps) => {
+  const usersQuery = useGetUsersQuery();
+  const users = usersQuery.data;
 
   return (
     <Box sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]} {...props}>
       <Table hoverRow aria-label='courses list table' variant='plain' borderAxis='xBetween'>
         <thead>
           <tr>
-            <th style={{ width: '40%' }}>Название</th>
-            <th>Описание</th>
-            <th style={{ textAlign: 'right' }}>Модули</th>
+            <th style={{ width: '40%' }}>ID</th>
+            <th>ФИО</th>
             <th style={{ textAlign: 'right' }}>Действие</th>
           </tr>
         </thead>
         <tbody>
-          {courses?.map((course) => {
+          {users?.map((user: any) => {
             return (
               <tr
                 role='button'
-                onClick={() => onCourseClick?.(course)}
-                key={course.id}
+                onClick={() => onUserClick?.(user)}
+                key={user.id}
                 style={{ cursor: 'pointer' }}
               >
-                <td>{course.title}</td>
+                <td>{user.id}</td>
                 <td>
-                  <Box sx={lineClampSx(2)}>{course.description}</Box>
+                  {user?.user.first_name} {user?.user.last_name}
                 </td>
-                <td style={{ textAlign: 'right' }}>{course.modules?.length || 0}</td>
+
                 <td style={{ textAlign: 'right' }}>
                   <Dropdown>
                     <MenuButton
@@ -60,7 +60,7 @@ export const UsersTable = ({ sx, onDelete, onCourseClick, ...props }: UsersTable
                         color='danger'
                         onClick={(e) => {
                           e.stopPropagation();
-                          onDelete?.(course);
+                          onDelete?.(user);
                         }}
                       >
                         Удалить
