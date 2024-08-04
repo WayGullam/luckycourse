@@ -22,7 +22,7 @@ export type Course = {
   id: number
   title: string
   description: string
-  imgPath: string
+  img_url: string
   modules: Module[]
   progress: Progress
   status: Status

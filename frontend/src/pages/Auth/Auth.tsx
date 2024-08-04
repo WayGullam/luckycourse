@@ -3,9 +3,13 @@ import * as Styled from './Auth.styled';
 import { useLoginMutation } from '@/api/userApi';
 import { useForm } from 'react-hook-form';
 import { RequestAuthBody } from '@/api/types';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const Auth = () => {
-  const [login] = useLoginMutation();
+  const [login, status] = useLoginMutation();
+
+  const navigate = useNavigate();
 
   const form = useForm<RequestAuthBody>({
     defaultValues: {
@@ -17,6 +21,12 @@ export const Auth = () => {
   const authHandler = async (values: RequestAuthBody) => {
     login(values);
   };
+
+  useEffect(() => {
+    if (status.isSuccess) {
+      navigate('/');
+    }
+  }, [status.isSuccess]);
 
   return (
     <Styled.FullHeightBox>
