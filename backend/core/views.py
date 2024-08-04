@@ -80,6 +80,14 @@ class CourseViewSet(viewsets.ModelViewSet):
         path = "course"
 
 
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    class Meta:
+        path = "profiles"
+
+
 class ModuleViewSet(viewsets.ModelViewSet):
     serializer_class = ModuleSerializer
 

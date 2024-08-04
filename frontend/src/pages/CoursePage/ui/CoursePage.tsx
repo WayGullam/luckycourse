@@ -3,6 +3,7 @@ import { useGetCourseByIdQuery } from '@/api/courseApi.ts';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import styles from './CoursePage.module.scss';
 import { useState } from 'react';
+import { Test } from '@root/dto';
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -24,6 +25,10 @@ const CoursePage = () => {
     content: string;
   }) => {
     navigate(`/courses/${serializedCourseId}/lessons/${lesson.id}`, { state: lesson });
+  };
+
+  const handleLessonTest = (test: Test) => {
+    navigate(`/courses/${serializedCourseId}/test/${test.id}`, { state: test });
   };
 
   if (isLoading) return <div>{'Загрузка...'}</div>;
@@ -60,6 +65,14 @@ const CoursePage = () => {
                         <h1>{lesson.title}</h1>
                       </li>
                     ))}
+                    {module.test && (
+                      <li
+                        className={styles.lessonItem}
+                        onClick={() => handleLessonTest(module.test)}
+                      >
+                        <h1>{module.test.title}</h1>
+                      </li>
+                    )}
                   </ul>
                 )}
               </li>

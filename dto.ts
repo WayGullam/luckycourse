@@ -41,17 +41,18 @@ export enum QuestionType {
 }
 
 export type Answer = {
-  id: number;
-  question_id: number;
-  text: string;
-};
+  id: number
+  question_id: number
+  text: string
+  is_correct: boolean
+}
 
 export type Question = {
-  id: number;
-  title: string;
-  type: QuestionType;
-  answers?: Answer[];
-};
+  id: number
+  text: string
+  type: QuestionType
+  answers?: Answer[]
+}
 
 export type QuestionWithAnswer = {
   question_id: number;
@@ -68,12 +69,13 @@ export type Test = {
 };
 
 export type Module = {
-  id: number;
-  title: string;
-  description: string;
-  lessons: Lesson[];
-  status: Status;
-};
+  id: number
+  title: string
+  description: string
+  lessons: Lesson[]
+  status: Status
+  test: Test
+}
 
 export type Lesson = {
   id: number;
