@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetCourseByIdQuery } from '@/api/courseApi.ts';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 import styles from './CoursePage.module.scss';
 import { useState } from 'react';
@@ -16,32 +17,47 @@ const CoursePage = () => {
     setOpenModuleId((prevId) => (prevId === id ? null : id));
   };
 
+  const handleLessonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
+
   if (isLoading) return <div>{'Загрузка...'}</div>;
 
   return (
-    <div>
-      <h1>{data?.title}</h1>
-      <p>{data?.description}</p>
-      <ul className={styles.modulesList}>
-        {data?.modules.map((module) => (
-          <li
-            key={module.id}
-            className={styles.moduleItem}
-            onClick={() => handleOpenModule(module.id)}
-          >
-            {module.title}
-            {openModuleId === module.id && (
-              <ul className={styles.moduleLessons}>
-                {module.lessons?.map((lesson) => (
-                  <li key={lesson.id} className={styles.lessonItem}>
-                    {lesson.content}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className={styles.fullCourseWrapper}>
+      <div className={styles.courseInfo}>
+        <div className={styles.courseTextInfo}>
+          <h1>{data?.title}</h1>
+          <p>{data?.description}</p>
+        </div>
+        <div className={styles.imgCourse}>
+          <img src={data?.img_url} alt={data?.title} />
+        </div>
+      </div>
+      <div className={styles.modules}>
+        <h2 className={styles.mudulesTitle}>Модули курса</h2>
+        <ul className={styles.modulesList}>
+          {data?.modules.map((module) => (
+            <div key={module.id}>
+              <li className={styles.moduleItem} onClick={() => handleOpenModule(module.id)}>
+                <div className={styles.moduleListTitle}>
+                  <h2>{module.title}</h2>
+                  {openModuleId === module.id ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </div>
+                {openModuleId === module.id && (
+                  <ul className={styles.moduleLessons}>
+                    {module.lessons?.map((lesson) => (
+                      <li key={lesson.id} className={styles.lessonItem} onClick={handleLessonClick}>
+                        <h1>{lesson.title}</h1>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            </div>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
