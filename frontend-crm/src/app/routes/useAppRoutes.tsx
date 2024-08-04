@@ -4,6 +4,7 @@ import CoursesPage from '@/pages/Courses';
 import LoginPage from '@/pages/Login';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from '@/entities/session/sessionSlice';
+import CourseConstructorPage from '@/pages/CourseConstructor';
 
 const privateRoutes: RouteObject[] = [
   {
@@ -13,6 +14,14 @@ const privateRoutes: RouteObject[] = [
       {
         path: '/courses',
         element: <CoursesPage />,
+      },
+      {
+        path: '/courses/create',
+        element: <CourseConstructorPage />,
+      },
+      {
+        path: '/courses/:courseId',
+        element: <CourseConstructorPage />,
       },
     ],
   },
