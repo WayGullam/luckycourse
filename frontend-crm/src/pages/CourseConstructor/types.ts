@@ -10,10 +10,14 @@ export type CourseConstructorFormState = {
     description: string;
     lessons?: { id: number; title: string; description: string; content: string }[];
     test: {
-      id: number;
-      text: string;
-      type: QuestionType;
-      answers: { id: number; text?: string; is_correct: boolean }[];
-    }[];
+      title: string;
+      description: string;
+      questions: {
+        id: number;
+        text: string;
+        type: QuestionType;
+        answers: { id: number; text?: string; is_correct: boolean }[];
+      }[];
+    };
   }[];
 };

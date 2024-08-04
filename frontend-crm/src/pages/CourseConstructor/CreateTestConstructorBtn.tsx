@@ -19,12 +19,12 @@ export const CreateTestConstructorBtn = ({ form, moduleIndex }: CreateTestConstr
         variant='outlined'
         color='neutral'
         onClick={() => {
-          if (!form.getValues(`modules.${moduleIndex}.test`)?.length) {
-            form.setValue(`modules.${moduleIndex}.test`, [
+          if (!form.getValues(`modules.${moduleIndex}.test.questions`)?.length) {
+            form.setValue(`modules.${moduleIndex}.test.questions`, [
               {
                 id: Date.now(),
                 text: '',
-                answers: [{ id: Date.now() }],
+                answers: [{ id: Date.now(), is_correct: false, text: '' }],
                 type: QuestionType.Single,
               },
             ]);

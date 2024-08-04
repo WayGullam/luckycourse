@@ -34,7 +34,7 @@ const generateNewModule = () => ({
   title: '',
   description: '',
   lessons: [],
-  test: [],
+  test: { title: '', description: '', questions: [] },
 });
 
 const defaultValues: CourseConstructorFormState = {
