@@ -39,7 +39,6 @@ core_views = [
 for cls in core_views:
     router.register(cls.Meta.path, cls, cls.Meta.basename if hasattr(cls.Meta, "basename") else cls.Meta.path)
 
-# router.register(r"register", UserRegisterViewSet, basename="register")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
