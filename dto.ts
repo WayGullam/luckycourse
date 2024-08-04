@@ -44,11 +44,12 @@ export type Answer = {
   id: number
   question_id: number
   text: string
+  is_correct: boolean
 }
 
 export type Question = {
   id: number
-  title: string
+  text: string
   type: QuestionType
   answers?: Answer[]
 }
@@ -73,6 +74,7 @@ export type Module = {
   description: string
   lessons: Lesson[]
   status: Status
+  test: Test
 }
 
 export type Lesson = {
