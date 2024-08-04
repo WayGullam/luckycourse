@@ -14,7 +14,7 @@ const LessonPage = () => {
   if (!lesson) return <div>{'Урок не найден'}</div>;
 
   return (
-    <Container maxWidth='md' className={styles.lessonContainer}>
+    <Container sx={{ maxWidth: '1200px' }} className={styles.lessonContainer}>
       <Paper elevation={3} className={styles.lessonPaper}>
         <Box className={styles.lessonHeader}>
           <Typography variant='h2' className={styles.lessonTitle}>
