@@ -26,6 +26,6 @@
     },
     "typeRoots": ["node_modules/@types", "src/types"],
   },
-  "include": ["src"],
+  "include": ["src", "../dto.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -7,3 +7,9 @@ export const lineClampSx = (lines: number) => ({
   WebkitBoxOrient: 'vertical',
   boxOrient: 'vertical',
 });
+
+export const flexCenterSx = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};

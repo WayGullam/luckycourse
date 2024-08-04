@@ -31,7 +31,7 @@ export const Registration = () => {
 
   return (
     <Styled.FullHeightBox>
-      <Styled.StyledFormContainer>
+      <Styled.StyledFormContainer sx={{ borderRadius: 4, boxShadow: '0 0 30px 10px #00000020' }}>
         <Typography component='h1' variant='h5'>
           Регистрация
         </Typography>
@@ -78,7 +78,7 @@ export const Registration = () => {
             sx={{ mb: 2 }}
             {...form.register('password')}
           />
-          <Styled.StyledButton type='submit' fullWidth variant='contained'>
+          <Styled.StyledButton type='submit' fullWidth variant='contained' sx={{ borderRadius: 2 }}>
             Зарегистрироваться
           </Styled.StyledButton>
         </Box>
