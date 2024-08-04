@@ -1,3 +1,5 @@
+import { flexCenterSx } from '@/shared/styles';
+import { CKEditor } from '@/shared/ui/CKEditor/CKEditor';
 import { PageTitle } from '@/shared/ui/PageTitle';
 import {
   Box,
@@ -14,18 +16,11 @@ import {
 import { IconPlus, IconTrash } from '@tabler/icons-react';
 import { useForm } from 'react-hook-form';
 import ReactImagePickerEditor, { ImagePickerConf } from 'react-image-picker-editor';
-
-type CourseConstructorFormState = {
-  title: string;
-  description: string;
-  img: string;
-  modules: {
-    id: number;
-    title: string;
-    description: string;
-    lessons?: { id: number; title: string; description: string; content: string }[];
-  }[];
-};
+import { CourseConstructorFormState } from './types';
+import { useCreateCourseMutation } from '@/api/courseApi';
+import { serizalizeCourseConstructorFormState } from './lib';
+import { toast } from 'react-toastify';
+import { CreateTestConstructorBtn } from './CreateTestConstructorBtn';
 
 const generateNewLesson = () => ({
   id: Date.now(),
@@ -38,6 +33,8 @@ const generateNewModule = () => ({
   id: Date.now(),
   title: '',
   description: '',
+  lessons: [],
+  test: [],
 });
 
 const defaultValues: CourseConstructorFormState = {
@@ -57,10 +54,20 @@ const imagePickerConfig: ImagePickerConf = {
   hideDownloadBtn: true,
 };
 
-const CourseConstructorPage = () => {
+export const CourseConstructorPage = () => {
   const form = useForm({
     defaultValues,
   });
+  const [createCourse] = useCreateCourseMutation();
+
+  const createHandler = async () => {
+    try {
+      await createCourse(serizalizeCourseConstructorFormState(form.getValues())).unwrap();
+      toast.success('Курс создан');
+    } catch {
+      toast.error('Ошибка!');
+    }
+  };
 
   return (
     <Box width='100%'>
@@ -68,6 +75,7 @@ const CourseConstructorPage = () => {
         title='Конструктор курса'
         buttonText='Сохранить'
         ButtonProps={{ color: 'success', variant: 'soft' }}
+        onClick={() => createHandler()}
       />
       <Sheet sx={(theme) => ({ borderRadius: theme.radius.sm, padding: 2, mt: 6 })}>
         <Typography level='h4'>Основная информация</Typography>
@@ -125,7 +133,7 @@ const CourseConstructorPage = () => {
             Добавить модуль <IconPlus size={16} />
           </Button>
         </Box>
-        {form.watch('modules')?.map((module, moduleIndex) => (
+        {form.watch('modules')?.map((module, moduleIndex, modules) => (
           <Sheet
             key={module.id}
             sx={(theme) => ({
@@ -183,7 +191,7 @@ const CourseConstructorPage = () => {
                 Добавить урок <IconPlus size={16} />
               </Button>
             </Box>
-            {module.lessons?.map((lesson, lessonIndex) => (
+            {module.lessons?.map((lesson, lessonIndex, lessons) => (
               <Sheet
                 key={lesson.id}
                 sx={(theme) => ({
@@ -232,9 +240,51 @@ const CourseConstructorPage = () => {
                       />
                     </FormControl>
                   </Grid>
+                  <Grid xs={12}>
+                    <FormControl>
+                      <FormLabel>Контент</FormLabel>
+                      <CKEditor
+                        data={lesson.content}
+                        onChange={(_, editor) => {
+                          form.setValue(
+                            `modules.${moduleIndex}.lessons.${lessonIndex}.content`,
+                            editor.getData(),
+                          );
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
                 </Grid>
+                {lesson.title && lessons.length === lessonIndex + 1 && (
+                  <Box mt={2} sx={flexCenterSx}>
+                    <Button
+                      variant='outlined'
+                      onClick={() =>
+                        form.setValue(`modules.${moduleIndex}.lessons`, [
+                          ...(form.watch(`modules.${moduleIndex}.lessons`) || []),
+                          generateNewLesson(),
+                        ])
+                      }
+                    >
+                      Добавить урок <IconPlus size={16} />
+                    </Button>
+                  </Box>
+                )}
               </Sheet>
             ))}
+            {!!module.lessons?.length && modules.length === moduleIndex + 1 && (
+              <Box mt={2} sx={[flexCenterSx, { columnGap: 2 }]}>
+                <Button
+                  variant='outlined'
+                  onClick={() =>
+                    form.setValue('modules', [...form.watch('modules'), generateNewModule()])
+                  }
+                >
+                  Добавить модуль <IconPlus size={16} />
+                </Button>
+                <CreateTestConstructorBtn form={form} moduleIndex={moduleIndex} />
+              </Box>
+            )}
           </Sheet>
         ))}
       </Sheet>

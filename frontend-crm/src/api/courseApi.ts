@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Course } from '@root/dto';
 import { api } from '.';
 
@@ -17,7 +18,15 @@ export const courseApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Course'],
     }),
+    createCourse: build.mutation<void, any>({
+      query: (body) => ({
+        url: '/courses/',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Course'],
+    }),
   }),
 });
 
-export const { useGetCoursesQuery, useDeleteCourseMutation } = courseApi;
+export const { useGetCoursesQuery, useDeleteCourseMutation, useCreateCourseMutation } = courseApi;

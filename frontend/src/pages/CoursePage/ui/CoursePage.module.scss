@@ -46,9 +46,11 @@
   margin-bottom: 20px;
   background-color: #fff;
   overflow: hidden;
-  padding: 10px 82px;
+  padding: 10px 34px;
 
   .courseTextInfo {
+    height: 100%;
+    overflow: auto;
 
     h1 {
       font-size: 30px;
@@ -68,11 +70,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 
     img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
+      border-radius: 12px;
     }
   }
 }
