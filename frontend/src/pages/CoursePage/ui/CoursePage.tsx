@@ -17,7 +17,12 @@ const CoursePage = () => {
     setOpenModuleId((prevId) => (prevId === id ? null : id));
   };
 
-  const handleLessonClick = (lesson: { id: number; title: string; description: string; content: string }) => {
+  const handleLessonClick = (lesson: {
+    id: number;
+    title: string;
+    description: string;
+    content: string;
+  }) => {
     navigate(`/courses/${serializedCourseId}/lessons/${lesson.id}`, { state: lesson });
   };
 

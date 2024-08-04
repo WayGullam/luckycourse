@@ -20,15 +20,7 @@ const LessonPage = () => {
           <Typography variant='h2' className={styles.lessonTitle}>
             {lesson.title}
           </Typography>
-          <img
-            src='/path/to/illustration.png'
-            alt='Illustration'
-            className={styles.lessonIllustration}
-          />
         </Box>
-        <Typography variant='body1' className={styles.lessonDescription}>
-          {lesson.description}
-        </Typography>
         <div dangerouslySetInnerHTML={{ __html: lesson.content }} />
       </Paper>
     </Container>
