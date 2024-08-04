@@ -3,9 +3,12 @@ import * as Styled from './Auth.styled';
 import { useRegisterMutation } from '@/api/userApi';
 import { RequestRegistBody } from '@/api/types';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Registration = () => {
-  const [register] = useRegisterMutation();
+  const [register, status] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const form = useForm<RequestRegistBody>({
     defaultValues: {
@@ -19,6 +22,12 @@ export const Registration = () => {
   const authHandler = async (values: RequestRegistBody) => {
     register(values);
   };
+
+  useEffect(() => {
+    if (status.isUninitialized) {
+      navigate('/');
+    }
+  }, [status.isUninitialized]);
 
   return (
     <Styled.FullHeightBox>
