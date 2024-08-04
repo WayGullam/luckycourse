@@ -19,12 +19,14 @@ import { Course } from '@root/dto';
 import { IconAlertTriangleFilled, IconSearch } from '@tabler/icons-react';
 import { useBoolean } from 'ahooks';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CoursesPage() {
   const [filterOpen, filterOpenActions] = useBoolean();
   const [deleteModalOpen, deleteModalOpenActions] = useBoolean();
   const [course, setCourse] = useState<Course | null>(null);
   const [deleteCourse] = useDeleteCourseMutation();
+  const navigate = useNavigate();
 
   const deleteHandler = async () => {
     if (!course) return;
@@ -40,7 +42,7 @@ function CoursesPage() {
 
   return (
     <Box width='100%'>
-      <PageTitle title='Курсы' />
+      <PageTitle title='Курсы' plusIcon onClick={() => navigate('/courses/create')} />
       <Box mt={4} width={200}>
         <Button fullWidth variant='outlined' color='warning' onClick={filterOpenActions.toggle}>
           Фильтры
@@ -73,6 +75,7 @@ function CoursesPage() {
           deleteModalOpenActions.setTrue();
           setCourse(course);
         }}
+        onCourseClick={(course) => navigate(`/courses/${course.id}`)}
       />
       <Modal open={deleteModalOpen} onClose={deleteModalOpenActions.setFalse}>
         <ModalDialog variant='outlined' role='alertdialog'>

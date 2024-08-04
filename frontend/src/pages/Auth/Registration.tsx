@@ -1,45 +1,73 @@
 import { Typography, Box } from '@mui/material';
 import * as Styled from './Auth.styled';
+import { useRegisterMutation } from '@/api/userApi';
+import { RequestRegistBody } from '@/api/types';
+import { useForm } from 'react-hook-form';
 
 export const Registration = () => {
+  const [register] = useRegisterMutation();
+
+  const form = useForm<RequestRegistBody>({
+    defaultValues: {
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+    },
+  });
+
+  const authHandler = async (values: RequestRegistBody) => {
+    register(values);
+  };
+
   return (
     <Styled.FullHeightBox>
       <Styled.StyledFormContainer>
         <Typography component='h1' variant='h5'>
           Регистрация
         </Typography>
-        <Box component='form' noValidate sx={{ mt: 1 }}>
+        <Box component='form' noValidate sx={{ mt: 1 }} onSubmit={form.handleSubmit(authHandler)}>
           <Styled.StyledTextField
             margin='normal'
             required
             fullWidth
-            id='name'
-            label='Имя'
-            name='name'
-            autoComplete='name'
+            id='last_name'
+            label='Фамилия'
+            autoComplete='last_name'
             autoFocus
             sx={{ mb: 2 }}
+            {...form.register('last_name')}
           />
           <Styled.StyledTextField
             margin='normal'
             required
             fullWidth
-            id='login'
+            id='first_name'
+            label='Имя'
+            autoComplete='first_name'
+            sx={{ mb: 2 }}
+            {...form.register('first_name')}
+          />
+          <Styled.StyledTextField
+            margin='normal'
+            required
+            fullWidth
+            id='username'
             label='Логин'
-            name='логин'
-            autoComplete='логин'
+            autoComplete='username'
+            {...form.register('username')}
             sx={{ mb: 2 }}
           />
           <Styled.StyledTextField
             margin='normal'
             required
             fullWidth
-            name='password'
             label='Пароль'
             type='password'
             id='password'
             autoComplete='current-password'
             sx={{ mb: 2 }}
+            {...form.register('password')}
           />
           <Styled.StyledButton type='submit' fullWidth variant='contained'>
             Зарегистрироваться

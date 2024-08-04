@@ -6,9 +6,10 @@ import { IconDotsVertical } from '@tabler/icons-react';
 
 export type CoursesTableProps = BoxProps & {
   onDelete?: (course: Course) => void;
+  onCourseClick?: (course: Course) => void;
 };
 
-export const CoursesTable = ({ sx, onDelete, ...props }: CoursesTableProps) => {
+export const CoursesTable = ({ sx, onDelete, onCourseClick, ...props }: CoursesTableProps) => {
   const coursesQuery = useGetCoursesQuery();
   const courses = coursesQuery.data;
 
@@ -26,7 +27,12 @@ export const CoursesTable = ({ sx, onDelete, ...props }: CoursesTableProps) => {
         <tbody>
           {courses?.map((course) => {
             return (
-              <tr key={course.id} style={{ cursor: 'pointer' }}>
+              <tr
+                role='button'
+                onClick={() => onCourseClick?.(course)}
+                key={course.id}
+                style={{ cursor: 'pointer' }}
+              >
                 <td>{course.title}</td>
                 <td>
                   <Box sx={lineClampSx(2)}>{course.description}</Box>
@@ -34,12 +40,29 @@ export const CoursesTable = ({ sx, onDelete, ...props }: CoursesTableProps) => {
                 <td style={{ textAlign: 'right' }}>{course.modules?.length || 0}</td>
                 <td style={{ textAlign: 'right' }}>
                   <Dropdown>
-                    <MenuButton component={IconButton} sx={{ border: 'none' }}>
+                    <MenuButton
+                      onClick={(e) => e.stopPropagation()}
+                      component={IconButton}
+                      sx={{ border: 'none' }}
+                    >
                       <IconDotsVertical />
                     </MenuButton>
                     <Menu placement='bottom-end' variant='plain'>
-                      <MenuItem color='primary'>Изменить</MenuItem>
-                      <MenuItem color='danger' onClick={() => onDelete?.(course)}>
+                      <MenuItem
+                        color='primary'
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        Изменить
+                      </MenuItem>
+                      <MenuItem
+                        color='danger'
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete?.(course);
+                        }}
+                      >
                         Удалить
                       </MenuItem>
                     </Menu>
