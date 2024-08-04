@@ -18,7 +18,7 @@ export const RouterPath: Record<AppRoutes, string> = {
   [AppRoutes.REGISTRATION]: '/registration',
 };
 
-export const routerConfig: Record<AppRoutes, RouteProps> = {
+export const priviteRouterConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {
     path: RouterPath.main,
     element: <MainPage />,

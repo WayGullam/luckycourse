@@ -1,5 +1,6 @@
 import { User } from '@root/dto';
 import { api } from '.';
+import { RequestRegistBody } from './types';
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -10,7 +11,7 @@ export const userApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-    register: build.mutation<{ token: string }, Omit<User, 'user'>>({
+    register: build.mutation<{ token: string }, RequestRegistBody>({
       query: (body) => ({
         body,
         url: '/register/',
