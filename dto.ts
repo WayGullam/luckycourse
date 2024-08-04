@@ -7,7 +7,7 @@ export type User = {
 }
 
 export enum Role {
-  User,
+  User = 1,
   Admin,
   Moderator
 }
@@ -35,7 +35,7 @@ export enum Status {
 }
 
 export enum QuestionType {
-  Multiple,
+  Multiple = 1,
   Single,
   Input
 }
