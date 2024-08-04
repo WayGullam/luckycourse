@@ -7,6 +7,7 @@ export type PageTitleProps = {
   buttonText?: string;
   ButtonProps?: ButtonProps;
   plusIcon?: boolean;
+  hideBtn?: boolean;
 };
 
 export const PageTitle = ({
@@ -15,6 +16,7 @@ export const PageTitle = ({
   buttonText = 'Создать',
   ButtonProps,
   plusIcon = false,
+  hideBtn = false,
 }: PageTitleProps) => {
   return (
     <Box
@@ -23,18 +25,20 @@ export const PageTitle = ({
       <Typography level='h2' component='h2'>
         {title}
       </Typography>
-      <Button
-        fullWidth
-        variant='outlined'
-        onClick={onClick}
-        {...ButtonProps}
-        sx={{ maxWidth: 200 }}
-      >
-        <Box component='span' mr={0.5}>
-          {buttonText}
-        </Box>{' '}
-        {plusIcon && <IconPlus size={16} style={{ flexShrink: 0 }} />}
-      </Button>
+      {!hideBtn && (
+        <Button
+          fullWidth
+          variant='outlined'
+          onClick={onClick}
+          {...ButtonProps}
+          sx={{ maxWidth: 200 }}
+        >
+          <Box component='span' mr={0.5}>
+            {buttonText}
+          </Box>{' '}
+          {plusIcon && <IconPlus size={16} style={{ flexShrink: 0 }} />}
+        </Button>
+      )}
     </Box>
   );
 };

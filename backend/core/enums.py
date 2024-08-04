@@ -3,29 +3,29 @@ from http.client import PROCESSING
 
 
 class UserRole(Enum):
-    ADMIN = "ADMIN"
-    RESTARAUNT = "RESTARAUNT"
-    CLIENT = "CLIENT"
+    ADMIN = 1
+    TEACHER = 2
+    USER = 3
 
     @classmethod
     def choices(cls):
         return [(tag.value, tag.name) for tag in cls]
 
 
-class PaymentMethod(Enum):
-    ONLINE = "ONLINE"
-    COURIER = "COURIER"
-    CASH = "CASH"
+class Status(Enum):
+    NOT_STARTED = 1
+    IN_PROGRESS = 2
+    COMPLETED = 3
 
     @classmethod
     def choices(cls):
         return [(tag.value, tag.name) for tag in cls]
 
 
-class PaymentStatus(Enum):
-    PAYED = "PAYED"
-    PENDING = "PENDING"
-    FAILED = "FAILED"
+class QuestionType(Enum):
+    MULTIPLE = 1
+    SINGLE = 2
+    INPUT = 3
 
     @classmethod
     def choices(cls):

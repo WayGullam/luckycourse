@@ -1,0 +1,32 @@
+.testWrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #FFF;
+  border-radius: 12px;
+  padding: 18px
+}
+
+.title {
+  font-size: 28px;
+  color: #242424;
+  font-weight: 700;
+  line-height: 44px;
+  margin-bottom: 16px;
+}
+
+.question {
+  color: #242424;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.answer {
+  color: #383838;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 12px;
+  border-radius: 12px;
+}
