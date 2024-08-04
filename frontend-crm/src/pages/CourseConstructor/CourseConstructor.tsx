@@ -59,7 +59,7 @@ export const CourseConstructorPage = () => {
   const form = useForm({
     defaultValues,
   });
-  const [createCourse] = useCreateCourseMutation();
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
   const [modalOpen, setModalOpen] = useState<Record<number, boolean>>({});
 
   const createHandler = async () => {
@@ -76,6 +76,7 @@ export const CourseConstructorPage = () => {
       <PageTitle
         title='Конструктор курса'
         buttonText='Сохранить'
+        loading={isLoading}
         ButtonProps={{ color: 'success', variant: 'soft' }}
         onClick={() => createHandler()}
       />

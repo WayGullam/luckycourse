@@ -8,6 +8,7 @@ export type PageTitleProps = {
   ButtonProps?: ButtonProps;
   plusIcon?: boolean;
   hideBtn?: boolean;
+  loading?: boolean;
 };
 
 export const PageTitle = ({
@@ -17,6 +18,7 @@ export const PageTitle = ({
   ButtonProps,
   plusIcon = false,
   hideBtn = false,
+  loading = false,
 }: PageTitleProps) => {
   return (
     <Box
@@ -28,6 +30,8 @@ export const PageTitle = ({
       {!hideBtn && (
         <Button
           fullWidth
+          disabled={loading}
+          loading={loading}
           variant='outlined'
           onClick={onClick}
           {...ButtonProps}
