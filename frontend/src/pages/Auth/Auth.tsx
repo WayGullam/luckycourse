@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 
 export const Auth = () => {
   const [login, status] = useLoginMutation();
-
   const navigate = useNavigate();
 
   const form = useForm<RequestAuthBody>({
@@ -30,7 +29,7 @@ export const Auth = () => {
 
   return (
     <Styled.FullHeightBox>
-      <Styled.StyledFormContainer>
+      <Styled.StyledFormContainer sx={{borderRadius: 4, boxShadow: '0 0 30px 10px #00000020'}}>
         <Typography component='h1' variant='h5'>
           Вход
         </Typography>
@@ -56,7 +55,7 @@ export const Auth = () => {
             sx={{ mb: 2 }}
             {...form.register('password')}
           />
-          <Styled.StyledButton type='submit' fullWidth variant='contained'>
+          <Styled.StyledButton type='submit' fullWidth variant='contained' sx={{borderRadius: 2}}>
             Войти
           </Styled.StyledButton>
         </Box>
