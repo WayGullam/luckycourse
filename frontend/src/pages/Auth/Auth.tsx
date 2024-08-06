@@ -56,7 +56,7 @@ export const Auth = () => {
             {...form.register('password')}
           />
           <Styled.StyledButton type='submit' fullWidth variant='contained' sx={{borderRadius: 2}}>
-            ВОЙТИ
+            Войти
           </Styled.StyledButton>
         </Box>
       </Styled.StyledFormContainer>

@@ -79,7 +79,7 @@ export const Registration = () => {
             {...form.register('password')}
           />
           <Styled.StyledButton type='submit' fullWidth variant='contained' sx={{ borderRadius: 2 }}>
-            ЗАРЕГИСТРИРОВАТЬСЯ
+            Зарегистрироваться
           </Styled.StyledButton>
         </Box>
       </Styled.StyledFormContainer>
