@@ -1,6 +1,6 @@
 import { ListItem, ListItemButton, ListItemContent, Typography } from '@mui/joy';
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useMatch } from 'react-router-dom';
 
 export type SidebarItemProps = {
   icon: ReactNode;
@@ -9,10 +9,12 @@ export type SidebarItemProps = {
 };
 
 export const SidebarItem = ({ icon, label, to }: SidebarItemProps) => {
+  const match = useMatch(to);
   const navigate = useNavigate();
+
   return (
     <ListItem>
-      <ListItemButton onClick={() => navigate(to)}>
+      <ListItemButton selected={!!match} onClick={() => navigate(to)}>
         {icon}
         <ListItemContent>
           <Typography level='title-sm'>{label}</Typography>

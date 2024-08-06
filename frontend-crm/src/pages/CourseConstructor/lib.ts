@@ -14,7 +14,13 @@ export const serizalizeCourseConstructorFormState = ({
         ...lesson,
       })),
       test: {
-        questions: [...module.test],
+        ...module.test,
+        questions: module.test.questions?.map(({ id, ...question }) => ({
+          ...question,
+          answers: question.answers?.map(({ id, ...answer }) => ({
+            ...answer,
+          })),
+        })),
       },
     })),
   };

@@ -23,19 +23,34 @@ export type TestConstructorProps = {
 };
 
 export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorProps) => {
-  console.log(form.getValues());
   return (
     <Box width='100%'>
-      {form.watch(`modules.${moduleIndex}.test`)?.map((question, questionIndex) => {
+      <Grid container spacing={2}>
+        <Grid xs={12} md={6}>
+          <FormControl>
+            <FormLabel>Название</FormLabel>
+            <Input {...form.register(`modules.${moduleIndex}.test.title`)} />
+          </FormControl>
+        </Grid>
+        <Grid xs={12} md={6}>
+          <FormControl>
+            <FormLabel>Описание</FormLabel>
+            <Input {...form.register(`modules.${moduleIndex}.test.description`)} />
+          </FormControl>
+        </Grid>
+      </Grid>
+      {form.watch(`modules.${moduleIndex}.test.questions`)?.map((question, questionIndex) => {
         return (
           <React.Fragment key={question.id}>
-            <Grid container mt={questionIndex === 0 ? 0 : 2}>
+            <Grid container mt={2}>
               <Grid xs={12}>
                 <FormControl>
                   <FormLabel>Вопрос {questionIndex + 1}</FormLabel>
                   <Input
                     placeholder={`Вопрос ${questionIndex + 1}`}
-                    {...form.register(`modules.${moduleIndex}.test.${questionIndex}.text`)}
+                    {...form.register(
+                      `modules.${moduleIndex}.test.questions.${questionIndex}.text`,
+                    )}
                   />
                 </FormControl>
               </Grid>
@@ -49,11 +64,11 @@ export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorPr
                   color='primary'
                   onChange={(e) =>
                     form.setValue(
-                      `modules.${moduleIndex}.test.${questionIndex}.type`,
+                      `modules.${moduleIndex}.test.questions.${questionIndex}.type`,
                       parseInt(e.target.value),
                     )
                   }
-                  value={form.watch(`modules.${moduleIndex}.test.${questionIndex}.type`)}
+                  value={form.watch(`modules.${moduleIndex}.test.questions.${questionIndex}.type`)}
                 >
                   <Radio label='Одиночный выбор' value={QuestionType.Single} />
                   <Radio label='Множественный выбор' value={QuestionType.Multiple} />
@@ -80,7 +95,7 @@ export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorPr
                             color='success'
                             onChange={(e) => {
                               const answersKey =
-                                `modules.${moduleIndex}.test.${questionIndex}.answers` as const;
+                                `modules.${moduleIndex}.test.questions.${questionIndex}.answers` as const;
                               if (question.type === QuestionType.Single) {
                                 form.setValue(
                                   answersKey,
@@ -95,12 +110,12 @@ export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorPr
                               );
                             }}
                             checked={form.watch(
-                              `modules.${moduleIndex}.test.${questionIndex}.answers.${answerIndex}.is_correct`,
+                              `modules.${moduleIndex}.test.questions.${questionIndex}.answers.${answerIndex}.is_correct`,
                             )}
                           />
                         }
                         {...form.register(
-                          `modules.${moduleIndex}.test.${questionIndex}.answers.${answerIndex}.text`,
+                          `modules.${moduleIndex}.test.questions.${questionIndex}.answers.${answerIndex}.text`,
                         )}
                         startDecorator={
                           <Box
@@ -133,7 +148,8 @@ export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorPr
                 sx={{ mt: 2 }}
                 variant='soft'
                 onClick={() => {
-                  const key = `modules.${moduleIndex}.test.${questionIndex}.answers` as const;
+                  const key =
+                    `modules.${moduleIndex}.test.questions.${questionIndex}.answers` as const;
                   form.setValue(key, [
                     ...form.getValues(key),
                     { id: Date.now(), text: '', is_correct: false },
@@ -162,7 +178,7 @@ export const TestConstructor = ({ form, moduleIndex, onSave }: TestConstructorPr
           sx={{ mt: 1, display: 'flex' }}
           variant='outlined'
           onClick={() => {
-            const key = `modules.${moduleIndex}.test` as const;
+            const key = `modules.${moduleIndex}.test.questions` as const;
             form.setValue(key, [
               ...form.getValues(key),
               {

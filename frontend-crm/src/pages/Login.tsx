@@ -1,6 +1,6 @@
 import { RequestAuthBody } from '@/api/types';
 import { useLoginMutation } from '@/api/userApi';
-import { Box, Button, FormControl, Grid, Input, Sheet } from '@mui/joy';
+import { Box, Button, FormControl, Grid, Input, Sheet, Typography } from '@mui/joy';
 import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
@@ -35,6 +35,9 @@ const LoginPage = () => {
           borderRadius: theme.radius.sm,
         })}
       >
+        <Typography level='h3' textAlign='center' mb={2}>
+          Авторизация
+        </Typography>
         <Grid component='form' container spacing={1.5} onSubmit={form.handleSubmit(authHandler)}>
           <Grid component='div' xs={12}>
             <FormControl size='sm'>

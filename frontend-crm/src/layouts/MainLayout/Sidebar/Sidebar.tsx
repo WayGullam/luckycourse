@@ -15,8 +15,12 @@ import { sidebarItems } from './sidebarItems';
 import { SidebarItem } from './SidebarItem';
 import { closeSidebar } from '@/shared/lib';
 import ColorSchemeToggle from '@/features/theme/ui/ColorSchemeToggle';
+import { logout } from '@/entities/session/sessionSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+
   return (
     <Sheet
       className='Sidebar'
@@ -137,7 +141,7 @@ export default function Sidebar() {
           <Typography level='title-sm'>Админ</Typography>
           <Typography level='body-xs'>wg@support.com</Typography>
         </Box>
-        <IconButton size='sm' variant='plain' color='neutral'>
+        <IconButton size='sm' variant='plain' color='neutral' onClick={() => dispatch(logout())}>
           <IconLogout />
         </IconButton>
       </Box>

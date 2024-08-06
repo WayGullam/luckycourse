@@ -13,7 +13,7 @@ import {
   Textarea,
   Typography,
 } from '@mui/joy';
-import { IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useForm } from 'react-hook-form';
 import ReactImagePickerEditor, { ImagePickerConf } from 'react-image-picker-editor';
 import { CourseConstructorFormState } from './types';
@@ -21,6 +21,7 @@ import { useCreateCourseMutation } from '@/api/courseApi';
 import { serizalizeCourseConstructorFormState } from './lib';
 import { toast } from 'react-toastify';
 import { CreateTestConstructorBtn } from './CreateTestConstructorBtn';
+import { useState } from 'react';
 
 const generateNewLesson = () => ({
   id: Date.now(),
@@ -34,7 +35,7 @@ const generateNewModule = () => ({
   title: '',
   description: '',
   lessons: [],
-  test: [],
+  test: { title: '', description: '', questions: [] },
 });
 
 const defaultValues: CourseConstructorFormState = {
@@ -58,7 +59,8 @@ export const CourseConstructorPage = () => {
   const form = useForm({
     defaultValues,
   });
-  const [createCourse] = useCreateCourseMutation();
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
+  const [modalOpen, setModalOpen] = useState<Record<number, boolean>>({});
 
   const createHandler = async () => {
     try {
@@ -74,6 +76,7 @@ export const CourseConstructorPage = () => {
       <PageTitle
         title='Конструктор курса'
         buttonText='Сохранить'
+        loading={isLoading}
         ButtonProps={{ color: 'success', variant: 'soft' }}
         onClick={() => createHandler()}
       />
@@ -113,7 +116,7 @@ export const CourseConstructorPage = () => {
                 <FormLabel>Картинка</FormLabel>
                 <ReactImagePickerEditor
                   config={imagePickerConfig}
-                  imageSrcProp={form.watch('img')}
+                  imageSrcProp={form.getValues().img}
                   imageChanged={(img: string) => form.setValue('img', img)}
                 />
               </FormControl>
@@ -282,7 +285,63 @@ export const CourseConstructorPage = () => {
                 >
                   Добавить модуль <IconPlus size={16} />
                 </Button>
-                <CreateTestConstructorBtn form={form} moduleIndex={moduleIndex} />
+                <CreateTestConstructorBtn
+                  form={form}
+                  open={!!modalOpen[module.id]}
+                  setOpen={(bool) => {
+                    setModalOpen({ [module.id]: bool });
+                  }}
+                  moduleIndex={moduleIndex}
+                />
+              </Box>
+            )}
+            {!!module.test.questions.length && (
+              <Box
+                mt={2}
+                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
+              >
+                <Typography
+                  component='div'
+                  level='title-md'
+                  sx={(theme) => ({
+                    bgcolor: theme.palette.success.softHoverBg,
+                    padding: 1.5,
+                    borderTopLeftRadius: theme.radius.sm,
+                    borderBottomLeftRadius: theme.radius.sm,
+                    color: theme.palette.success.softColor,
+                  })}
+                >
+                  Тест добавлен
+                </Typography>
+                <IconButton
+                  color='primary'
+                  variant='soft'
+                  sx={{
+                    p: 1.5,
+                    borderRadius: 0,
+                  }}
+                  onClick={() => setModalOpen({ [module.id]: true })}
+                >
+                  <IconPencil />
+                </IconButton>
+                <IconButton
+                  color='danger'
+                  variant='soft'
+                  sx={() => ({
+                    p: 1.5,
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                  })}
+                  onClick={() =>
+                    form.setValue(`modules.${moduleIndex}.test`, {
+                      title: '',
+                      description: '',
+                      questions: [],
+                    })
+                  }
+                >
+                  <IconTrash />
+                </IconButton>
               </Box>
             )}
           </Sheet>

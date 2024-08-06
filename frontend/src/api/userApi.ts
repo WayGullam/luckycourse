@@ -1,4 +1,3 @@
-import { User } from '@root/dto';
 import { api } from '.';
 import { RequestRegistBody } from './types';
 
